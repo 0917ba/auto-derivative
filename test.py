@@ -1,8 +1,6 @@
-import numpy as np
-
 from Function import *
 from matplotlib import pyplot as plt
-
+import numpy as np
 
 x = Function.parameter()
 a = x**3
