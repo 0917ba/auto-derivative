@@ -1,5 +1,6 @@
 from abc import abstractmethod
 from math import sin, cos, tan, exp, log
+from Dual import *
 
 
 class Function:
@@ -10,6 +11,9 @@ class Function:
     @staticmethod
     def parameter():
         return IdentityFunction()
+    
+    def derivative(self, x):
+        return self.__call__(Dual(x, 1)).derivative
     
     def __add__(self, other) -> 'BinaryFunction':
         if not isinstance(other, Function):
@@ -127,14 +131,24 @@ class UnaryFunction(Function):
         elif self.type == 'pow':
             return x ** self.exponent
         elif self.type == 'sin':
+            if isinstance(x, Dual):
+                return Dual(sin(x.value), cos(x.value) * x.derivative)
             return sin(x)
         elif self.type == 'cos':
+            if isinstance(x, Dual):
+                return Dual(cos(x.value), -sin(x.value) * x.derivative)
             return cos(x)
         elif self.type == 'tan':
+            if isinstance(x, Dual):
+                return Dual(tan(x.value), x.derivative / cos(x.value) ** 2)
             return tan(x)
         elif self.type == 'exp':
+            if isinstance(x, Dual):
+                return Dual(exp(x.value), exp(x.value) * x.derivative)
             return exp(x)
         elif self.type == 'log':
+            if isinstance(x, Dual):
+                return Dual(log(x.value), x.derivative / x.value)
             return log(x)
         elif self.type == 'sqrt':
             return x ** 0.5
