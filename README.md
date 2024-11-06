@@ -9,7 +9,7 @@ Auto-Derivative와 함께라면 복잡한 수식 앞에서도 미소를 지을 �
 이제는 그냥 쓰면 될 뿐이죠. 더 빠르고 더 쉽게, 프로처럼 미분하세요. 
 
 ## 😄 Usage
-### Function Class
+### Make a Function
 ```python
 from Function import *
 
@@ -29,9 +29,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 x = Function.parameter()
-a = x**3
-b = Sin(1/(x**2))
-f = a * b
+f = x**3 * Sin(1/(x**2))
 
 X = np.linspace(-0.2, 0.2, 1000)
 Y = np.array([f(i) for i in X])
@@ -40,6 +38,16 @@ plt.plot(X, Y)
 plt.show()
 ```
 
-### Derivative
-Not implemented yet
+### Evaluate derivative of a Function
+```python
+from Function import *
+from Dual import *
+
+x = Function.parameter()
+# so complicated function
+f = Log(x**2 + Sin(x))
+
+# derivative of f at x = 3
+print(f.derivative(3))
+```
 
