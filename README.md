@@ -13,7 +13,7 @@ Auto-Derivative와 함께라면 복잡한 수식 앞에서도 미소를 지을 �
 ```python
 from Function import *
 
-# A parameter for function we make
+# A parameter for the function we make
 x = Function.parameter()
 
 # Define a new function
