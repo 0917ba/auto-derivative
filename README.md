@@ -29,9 +29,11 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 x = Function.parameter()
+# Oh my god... It's a pathological function!!
 f = x**3 * Sin(1/(x**2))
 
 X = np.linspace(-0.2, 0.2, 1000)
+# But it's easy to handle only if we have auto-derivative!
 Y = np.array([f(i) for i in X])
 
 plt.plot(X, Y)
@@ -41,13 +43,12 @@ plt.show()
 ### Evaluate derivative of a Function
 ```python
 from Function import *
-from Dual import *
 
 x = Function.parameter()
 # so complicated function
 f = Log(x**2 + Sin(x))
 
-# derivative of f at x = 3
+# derivative of f at x = 3, too easy isn't it?
 print(f.derivative(3))
 ```
 
